@@ -21,7 +21,5 @@ window.onload = () => {
 
   for (let i = 0; i < todos.length; i += 1) {
     document.getElementById(`todo${i}`).value = todos[i].description;
-
   }
-
 };
