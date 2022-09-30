@@ -1,13 +1,25 @@
-import _ from 'lodash';
 import './style.css';
 
- function component() {
-   const element = document.createElement('div');
+const todos = [
+  { index: 0, description: 'Wash the dishes', completed: true },
+  { index: 1, description: 'Complete the project', completed: false },
+  { index: 2, description: 'Find a house', completed: false },
+];
 
-  // Lodash, now imported by this script
-   element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+const todoDiv = document.querySelector('.todo-list');
 
-   return element;
- }
+window.onload = () => {
+  for (let i = 0; i < todos.length; i += 1) {
+    todoDiv.innerHTML += `
+    <div class="todos">
+      <input type="checkbox" name="no${i}" class="todo-check" value="true">
+      <input type="text" class="todo-desc" id="todo${i}">
+      <i class="fa-solid fa-bars"></i>       
+    </div>
+    `;
+  }
 
- document.body.appendChild(component());
+  for (let i = 0; i < todos.length; i += 1) {
+    document.getElementById(`todo${i}`).value = todos[i].description;
+  }
+};
