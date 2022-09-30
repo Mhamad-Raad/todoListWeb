@@ -1,9 +1,7 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Awesome Book
-
-> 
-
+# Todo list wepp app
+in this web app you can add/remove.delete/update tasks that you can do by yourself.
 
 ## Built With
 
@@ -11,16 +9,12 @@
 - CSS
 - JavaScript
 
-## Live Demo
-[Live Demo Link]
-
-
 ## Getting Started
 To get a local copy up and running follow these simple example steps.
 
 ### Setup
    run the following commands in your terminal
-  - git clone https://github.com/Mhamad-Raad/Book-Store.git
+  - git clone https://github.com/Mhamad-Raad/todoListWeb.git
   - git checkout main
 ### Install
    you can install the following linters into your proejct through node, by these commands:
@@ -42,14 +36,6 @@ To get a local copy up and running follow these simple example steps.
 
 - GitHub: [@githubhandle](https://github.com/Mhamad-Raad/)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/mhamad-raad-446a75227/)
-
-👤 **Author2**
-
-- GitHub: [@githubhandle](https://github.com/JonahKayizzi)
-
-👤 **Author3**
-
-- GitHub: [@githubhandle](https://github.com/shakerAbuDrais)
 
 ## 🤝 Contributing
 
