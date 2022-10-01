@@ -5,7 +5,7 @@ const todoDiv = document.querySelector('.todo-list');
 
 const render = () => {
   if (todos !== null) {
-    todoDiv.innerHTML = ` `;
+    todoDiv.innerHTML = '';
     todos.forEach((todo) => {
       const check = todo.completed === true ? 'checked' : '';
       todoDiv.innerHTML += `
@@ -59,14 +59,14 @@ const render = () => {
         todoDiv.querySelectorAll('.todos')[i].querySelector('.todo-desc').classList.remove('active');
         todoDiv.querySelectorAll('.todos')[i].querySelector('.fa-bars').style.display = 'flex';
         todoDiv.querySelectorAll('.todos')[i].querySelector('.trash-btn').style.display = 'none';
-      }   
+      }
     });
     //  update description
     todoDiv.querySelectorAll('.todos')[i].querySelector('.todo-desc').addEventListener('change', (e) => {
       todos[i].desc = e.target.value;
       localStorage.setItem('todos', JSON.stringify(todos));
-    });
-  }
+    })
+  };
 };
 addInput.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') {
