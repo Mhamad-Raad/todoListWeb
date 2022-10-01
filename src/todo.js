@@ -61,8 +61,8 @@ const render = () => {
       todos[i].desc = e.target.value;
       localStorage.setItem('todos', JSON.stringify(todos));
     });
-  };
-}
+  }
+};
 addInput.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') {
     if (addInput.value === '') {
