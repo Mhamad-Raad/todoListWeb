@@ -35,13 +35,8 @@ const render = () => {
       todoDiv.querySelectorAll('.todos')[i].querySelector('.fa-bars').style.display = 'none';
     });
 
-    // delete
-    function deleteItem() {
-      
-    }
-
     todoDiv.querySelectorAll('.todos')[i].querySelector('.trash-btn').addEventListener('click', () => {
-      /*eslint no-loop-func: "error"*/
+      /* eslint no-loop-func: "error" */
       index -= 1;
       todos.splice(i, 1);
       for (let a = i; a < todos.length; a += 1) {
@@ -65,9 +60,9 @@ const render = () => {
     todoDiv.querySelectorAll('.todos')[i].querySelector('.todo-desc').addEventListener('change', (e) => {
       todos[i].desc = e.target.value;
       localStorage.setItem('todos', JSON.stringify(todos));
-    })
+    });
   };
-};
+}
 addInput.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') {
     if (addInput.value === '') {
@@ -77,11 +72,11 @@ addInput.addEventListener('keypress', (e) => {
       addInput.value = '';
       index += 1;
       todos.push(
-      { 
-        index: index,
-        desc: todoVal,
-        completed: false
-       }
+        {
+          index: index,
+          desc: todoVal,
+          completed: false,
+        },
       );
       localStorage.setItem('todos', JSON.stringify(todos));
       render();
