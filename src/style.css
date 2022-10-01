@@ -31,6 +31,7 @@ body {
 }
 
 .todos {
+  position: relative;
   width: 100%;
   height: 50px;
   border-bottom: 1px solid rgb(193, 193, 193);
@@ -74,4 +75,23 @@ body {
   background-color: #fff;
   color: rgb(193, 193, 193);
   font-size: 16px;
+  cursor: pointer;
+}
+
+.active {
+  background-color: rgb(227, 226, 117);
+}
+
+.todo-desc:focus {
+  outline: none;
+}
+
+.trash-btn {
+  background: transparent;
+  border: none;
+  display: none;
+  width: 10%;
+  height: 100%;
+  cursor: pointer;
+  font-weight: bold;
 }
