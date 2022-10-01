@@ -11,6 +11,8 @@
     },
     "extends": ["airbnb-base"],
     "rules": {
+      "no-func-assign": "off",
+      "no-class-assign": "off",
       "no-loop-func": "off",
       "object-shorthand": 0,
       "no-shadow": "off",
