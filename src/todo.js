@@ -1,8 +1,9 @@
 /* eslint-dsibale no-loop-func */
 const addInput = document.querySelector('.todo-input');
-const todos = localStorage.getItem('todos') !== null ? JSON.parse(localStorage.getItem('todos')) : [];
+let todos = localStorage.getItem('todos') !== null ? JSON.parse(localStorage.getItem('todos')) : [];
 let index = todos.length;
 const todoDiv = document.querySelector('.todo-list');
+const clearBtn = document.querySelector('.clear-button');
 
 const render = () => {
   if (todos !== null) {
@@ -82,6 +83,16 @@ addInput.addEventListener('keypress', (e) => {
       render();
     }
   }
+});
+
+clearBtn.addEventListener('click', () => {
+  todos = todos.filter((todo) => todo.completed !== true);
+  for (let i = 0; i < todos.length; i += 1) {
+    todos[i].index = i + 1;
+  }
+  index = todos.length;
+  localStorage.setItem('todos', JSON.stringify(todos));
+  render();
 });
 
 window.onload = render();
