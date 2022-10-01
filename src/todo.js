@@ -96,4 +96,3 @@ clearBtn.addEventListener('click', () => {
 });
 
 window.onload = render();
-export default todos;
