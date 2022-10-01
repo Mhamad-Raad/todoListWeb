@@ -1,4 +1,4 @@
-/* eslint-dsibale no-loop-func */
+/* eslint-dsibale no-loop-func, no-func-assign, no-class-assign */
 const addInput = document.querySelector('.todo-input');
 let todos = localStorage.getItem('todos') !== null ? JSON.parse(localStorage.getItem('todos')) : [];
 let index = todos.length;
