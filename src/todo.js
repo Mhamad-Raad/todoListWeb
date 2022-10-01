@@ -1,3 +1,4 @@
+/* eslint-dsibale no-loop-func */
 const addInput = document.querySelector('.todo-input');
 const todos = localStorage.getItem('todos') !== null ? JSON.parse(localStorage.getItem('todos')) : [];
 let index = todos.length;
@@ -36,7 +37,6 @@ const render = () => {
     });
 
     todoDiv.querySelectorAll('.todos')[i].querySelector('.trash-btn').addEventListener('click', () => {
-      /* eslint-dsibale no-loop-func */
       todos.splice(i, 1);
       for (let a = i; a < todos.length; a += 1) {
         todos[a].index -= 1;
