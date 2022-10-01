@@ -41,8 +41,12 @@ let render = () => {
 
 // delete
     todoDiv.querySelectorAll('.todos')[i].querySelector('.trash-btn').addEventListener('click', (e) => {
-      console.log('delete');
+      index -= 1;
       todos.splice(i, 1);
+      for(let a = i; a < todos.length; a++) {
+        todos[a].index -= 1;
+      }
+      
       localStorage.setItem('todos', JSON.stringify(todos));
       render();
     });
