@@ -36,12 +36,12 @@ const render = () => {
     });
 
     todoDiv.querySelectorAll('.todos')[i].querySelector('.trash-btn').addEventListener('click', () => {
-      /* eslint no-loop-func: "error" */
-      index -= 1;
+      /* eslint-dsibale no-loop-func */
       todos.splice(i, 1);
       for (let a = i; a < todos.length; a += 1) {
         todos[a].index -= 1;
       }
+      index -= 1;
       localStorage.setItem('todos', JSON.stringify(todos));
       render();
     });
