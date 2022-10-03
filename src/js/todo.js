@@ -22,7 +22,7 @@ const render = () => {
   }
   for (let i = 0; i < todoDiv.querySelectorAll('.todos').length; i += 1) {
     //  update checked status
-    let todoRow = todoRow;
+    const todoRow = todoDiv.querySelectorAll('.todos')[i];
     todoRow.querySelector('.todo-check').addEventListener('click', () => {
       todos[i].completed = !todos[i].completed;
       localStorage.setItem('todos', JSON.stringify(todos));
