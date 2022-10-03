@@ -13,7 +13,7 @@ const render = () => {
       todoDiv.innerHTML += `
         <div class="todos">
           <input type="checkbox" class="todo-check" value="${todo.completed}" ${check}>
-          <input type="text" class="todo-desc" value="${todo.desc}">
+          <input type="text" class="todo-desc clear-border" value="${todo.desc}">
           <i class="fa-solid fa-bars"></i>
           <button type="button" class="trash-btn">delete</buttom>
         </div>
