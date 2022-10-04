@@ -13,7 +13,7 @@ const render = () => {
       todoDiv.innerHTML += `
         <div class="todos">
           <input type="checkbox" class="todo-check" value="${todo.completed}" ${check}>
-          <input type="text" class="todo-desc" value="${todo.desc}">
+          <input type="text" class="todo-desc clear-border" value="${todo.desc}">
           <i class="fa-solid fa-bars"></i>
           <button type="button" class="trash-btn">delete</buttom>
         </div>
@@ -22,22 +22,22 @@ const render = () => {
   }
   for (let i = 0; i < todoDiv.querySelectorAll('.todos').length; i += 1) {
     //  update checked status
-
-    todoDiv.querySelectorAll('.todos')[i].querySelector('.todo-check').addEventListener('click', () => {
+    const todoRow = todoDiv.querySelectorAll('.todos')[i];
+    todoRow.querySelector('.todo-check').addEventListener('click', () => {
       todos[i].completed = !todos[i].completed;
       localStorage.setItem('todos', JSON.stringify(todos));
     });
 
     //  change color and icon on input focus
 
-    todoDiv.querySelectorAll('.todos')[i].addEventListener('focusin', () => {
-      todoDiv.querySelectorAll('.todos')[i].classList.add('active');
-      todoDiv.querySelectorAll('.todos')[i].querySelector('.todo-desc').classList.add('active');
-      todoDiv.querySelectorAll('.todos')[i].querySelector('.trash-btn').style.display = 'block';
-      todoDiv.querySelectorAll('.todos')[i].querySelector('.fa-bars').style.display = 'none';
+    todoRow.addEventListener('focusin', () => {
+      todoRow.classList.add('active');
+      todoRow.querySelector('.todo-desc').classList.add('active');
+      todoRow.querySelector('.trash-btn').style.display = 'block';
+      todoRow.querySelector('.fa-bars').style.display = 'none';
     });
 
-    todoDiv.querySelectorAll('.todos')[i].querySelector('.trash-btn').addEventListener('click', () => {
+    todoRow.querySelector('.trash-btn').addEventListener('click', () => {
       todos.splice(i, 1);
       for (let a = i; a < todos.length; a += 1) {
         todos[a].index -= 1;
@@ -47,18 +47,18 @@ const render = () => {
       render();
     });
 
-    todoDiv.querySelectorAll('.todos')[i].addEventListener('focusout', (e) => {
-      const parent = todoDiv.querySelectorAll('.todos')[i];
+    todoRow.addEventListener('focusout', (e) => {
+      const parent = todoRow;
       const leavingParent = !parent.contains(e.relatedTarget);
       if (leavingParent) {
-        todoDiv.querySelectorAll('.todos')[i].classList.remove('active');
-        todoDiv.querySelectorAll('.todos')[i].querySelector('.todo-desc').classList.remove('active');
-        todoDiv.querySelectorAll('.todos')[i].querySelector('.fa-bars').style.display = 'flex';
-        todoDiv.querySelectorAll('.todos')[i].querySelector('.trash-btn').style.display = 'none';
+        todoRow.classList.remove('active');
+        todoRow.querySelector('.todo-desc').classList.remove('active');
+        todoRow.querySelector('.fa-bars').style.display = 'flex';
+        todoRow.querySelector('.trash-btn').style.display = 'none';
       }
     });
     //  update description
-    todoDiv.querySelectorAll('.todos')[i].querySelector('.todo-desc').addEventListener('change', (e) => {
+    todoRow.querySelector('.todo-desc').addEventListener('change', (e) => {
       todos[i].desc = e.target.value;
       localStorage.setItem('todos', JSON.stringify(todos));
     });
@@ -87,9 +87,11 @@ addInput.addEventListener('keypress', (e) => {
 
 clearBtn.addEventListener('click', () => {
   todos = todos.filter((todo) => todo.completed !== true);
-  for (let i = 0; i < todos.length; i += 1) {
-    todos[i].index = i + 1;
-  }
+  /* eslint-disable prefer-const */
+  let i = 0;
+  todos.forEach((todo) => {
+    todo.index = i + 1;
+  });
   index = todos.length;
   localStorage.setItem('todos', JSON.stringify(todos));
   render();
