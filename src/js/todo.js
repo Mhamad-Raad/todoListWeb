@@ -87,9 +87,10 @@ addInput.addEventListener('keypress', (e) => {
 
 clearBtn.addEventListener('click', () => {
   todos = todos.filter((todo) => todo.completed !== true);
+  /* eslint-disable prefer-const */
   let i = 0;
   todos.forEach((todo) => {
-    todo.index = i+1;
+    todo.index = i + 1;
   });
   index = todos.length;
   localStorage.setItem('todos', JSON.stringify(todos));
