@@ -20,8 +20,9 @@ describe('todo functions ADD & DELETE', () => {
       {
         desc: 'second',
         completed: false,
-        index: 0,
+        index: 1,
       },
     ]);
+    expect(() => deleteAnItem(i, todos)).toThrow('Error deleting item');
   });
 });
