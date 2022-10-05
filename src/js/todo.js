@@ -1,12 +1,11 @@
 /* eslint-dsibale no-loop-func, no-func-assign, no-class-assign */
-import deleteAnItem  from './deleteTodo.js';
+import deleteAnItem from './deleteTodo.js';
 
 const addInput = document.querySelector('.todo-input');
-let  todos = localStorage.getItem('todos') !== null ? JSON.parse(localStorage.getItem('todos')) : [];
+let todos = localStorage.getItem('todos') !== null ? JSON.parse(localStorage.getItem('todos')) : [];
 let index = todos.length;
 const todoDiv = document.querySelector('.todo-list');
 const clearBtn = document.querySelector('.clear-button');
-
 
 const render = () => {
   if (todos !== null) {
@@ -41,7 +40,7 @@ const render = () => {
     });
 
     todoRow.querySelector('.trash-btn').addEventListener('click', () => {
-      let updTodo = deleteAnItem(i, todos);
+      const updTodo = deleteAnItem(i, todos);
       for (let a = i; a < updTodo.length; a += 1) {
         updTodo[a].index -= 1;
       }
