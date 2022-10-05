@@ -1,7 +1,5 @@
 const deleteAnItem = require('./src/js/deleteTodo.js');
 const addTodo = require('./src/js/addTodo.js');
-require('./src/js/todo.js');
-require('./index.html');
 let localStorage = [];
 describe('todo functions ADD & DELETE', () => {
   test('add a todo', () => {
