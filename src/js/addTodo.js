@@ -1,4 +1,4 @@
-function addAnItem(info, todos){
+function addAnItem(info, todos) {
   todos.push(info);
   return todos;
 }

@@ -8,11 +8,10 @@ describe('todo functions ADD & DELETE', () => {
       completed: false,
       index: 0,
     };
-    let todos = [];
+    const todos = [];
     const result = addTodo(todo, todos);
     expect(result.length).toBe(1);
-  })
-  
+  });
   test('delete an item', () => {
     const todos = [
       {
