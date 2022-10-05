@@ -1,6 +1,6 @@
 /* eslint-dsibale no-loop-func, no-func-assign, no-class-assign */
 import deleteAnItem from './deleteTodo.js';
-
+import addAnItem from './addTodo.js';
 const addInput = document.querySelector('.todo-input');
 let todos = localStorage.getItem('todos') !== null ? JSON.parse(localStorage.getItem('todos')) : [];
 let index = todos.length;
@@ -74,14 +74,8 @@ addInput.addEventListener('keypress', (e) => {
       const todoVal = addInput.value;
       addInput.value = '';
       index += 1;
-      todos.push(
-        {
-          index: index,
-          desc: todoVal,
-          completed: false,
-        },
-      );
-      localStorage.setItem('todos', JSON.stringify(todos));
+      const updTodo =  addAnItem({index: index, desc: todoVal, completed: false,}, todos);
+      localStorage.setItem('todos', JSON.stringify(updTodo));
       render();
     }
   }
