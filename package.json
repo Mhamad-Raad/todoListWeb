@@ -4,7 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "build": "webpack",
     "start": "webpack serve --open",
     "deploy": "gh-pages -d dist"
@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/Mhamad-Raad/WebPack#readme",
   "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.18.6",
     "babel-eslint": "^10.1.0",
     "css-loader": "^6.7.1",
     "eslint": "^7.32.0",
@@ -39,6 +40,10 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
-    "lodash": "^4.17.21"
-  }
+    "lodash": "^4.17.21",
+    "mock-localstorage": "^0.2.0"
+  },
+  "jest": {
+    "verbose": true
+ }
 }
