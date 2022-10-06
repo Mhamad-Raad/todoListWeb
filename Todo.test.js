@@ -1,5 +1,5 @@
 /*
-* @jest-environment jsdom 
+* @jest-environment jsdom
 */
 
 const deleteAnItem = require('./src/js/deleteTodo.js');
@@ -13,20 +13,19 @@ describe('todo functions ADD & DELETE', () => {
       index: 0,
     };
     const todos = [];
-  
-   const result = addTodo(todo, todos);
-   expect(todos).toEqual(result);
-   localStorage.setItem('todos', JSON.stringify(result));
-   expect(JSON.parse(localStorage.getItem('todos'))).toEqual(result);
-   for(let i = 0; i < result.length; i += 1) {
-    document.body.innerHTML +=
-    '<div class="works">' +
-    '  <ul id="list"><li></li></ul>' +
-    '</div>';
-   }
+
+    const result = addTodo(todo, todos);
+    expect(todos).toEqual(result);
+    localStorage.setItem('todos', JSON.stringify(result));
+    expect(JSON.parse(localStorage.getItem('todos'))).toEqual(result);
+    for (let i = 0; i < result.length; i += 1) {
+      document.body.innerHTML += '<div class="works">'
+      + '  <ul id="list"><li></li></ul>' 
+      + '</div>';
+    }
     const list = document.querySelectorAll('.works');
     expect(list).toHaveLength(result.length);
-  })
+  });
 
   test('delete an item', () => {
     const todos = [
@@ -43,17 +42,16 @@ describe('todo functions ADD & DELETE', () => {
     ];
     const i = 0;
     const result = deleteAnItem(i, todos);
-    expect(result).toEqual([{ desc: 'second', completed: false, index: 1, },]);
+    expect(result).toEqual([{ desc: 'second', completed: false, index: 1, }]);
     localStorage.setItem('todos', JSON.stringify(result));
     expect(JSON.parse(localStorage.getItem('todos'))).toEqual(result);
     document.body.innerHTML = '';
-    for(let i = 0; i < result.length; i += 1) { 
-      document.body.innerHTML +=
-      '<div class="works">' +
-      '  <ul id="list"><li></li></ul>' +
-      '</div>';
+    for (let i = 0; i < result.length; i += 1) {
+      document.body.innerHTML += '<div class="works">'
+      + '  <ul id="list"><li></li></ul>'
+      + '</div>';
     }
     const list = document.querySelectorAll('.works');
     expect(list).toHaveLength(result.length);
-});
+  });
 });
