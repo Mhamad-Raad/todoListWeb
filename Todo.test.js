@@ -20,7 +20,7 @@ describe('todo functions ADD & DELETE', () => {
     expect(JSON.parse(localStorage.getItem('todos'))).toEqual(result);
     for (let i = 0; i < result.length; i += 1) {
       document.body.innerHTML += '<div class="works">'
-      + '  <ul id="list"><li></li></ul>' 
+      + '  <ul id="list"><li></li></ul>'
       + '</div>';
     }
     const list = document.querySelectorAll('.works');
@@ -42,7 +42,7 @@ describe('todo functions ADD & DELETE', () => {
     ];
     const i = 0;
     const result = deleteAnItem(i, todos);
-    expect(result).toEqual([{ desc: 'second', completed: false, index: 1, }]);
+    expect(result).toEqual([{ desc: 'second', completed: false, index: 1 }]);
     localStorage.setItem('todos', JSON.stringify(result));
     expect(JSON.parse(localStorage.getItem('todos'))).toEqual(result);
     document.body.innerHTML = '';
