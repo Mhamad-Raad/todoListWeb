@@ -1,4 +1,7 @@
 /* eslint-dsibale no-loop-func, no-func-assign, no-class-assign */
+import deleteAnItem from './deleteTodo.js';
+import addAnItem from './addTodo.js';
+
 const addInput = document.querySelector('.todo-input');
 let todos = localStorage.getItem('todos') !== null ? JSON.parse(localStorage.getItem('todos')) : [];
 let index = todos.length;
@@ -38,12 +41,12 @@ const render = () => {
     });
 
     todoRow.querySelector('.trash-btn').addEventListener('click', () => {
-      todos.splice(i, 1);
-      for (let a = i; a < todos.length; a += 1) {
-        todos[a].index -= 1;
+      const updTodo = deleteAnItem(i, todos);
+      for (let a = i; a < updTodo.length; a += 1) {
+        updTodo[a].index -= 1;
       }
       index -= 1;
-      localStorage.setItem('todos', JSON.stringify(todos));
+      localStorage.setItem('todos', JSON.stringify(updTodo));
       render();
     });
 
@@ -72,14 +75,8 @@ addInput.addEventListener('keypress', (e) => {
       const todoVal = addInput.value;
       addInput.value = '';
       index += 1;
-      todos.push(
-        {
-          index: index,
-          desc: todoVal,
-          completed: false,
-        },
-      );
-      localStorage.setItem('todos', JSON.stringify(todos));
+      const updTodo = addAnItem({ index: index, desc: todoVal, completed: false }, todos);
+      localStorage.setItem('todos', JSON.stringify(updTodo));
       render();
     }
   }
