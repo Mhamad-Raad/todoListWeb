@@ -1,6 +1,9 @@
+/*
+* @jest-environment jsdom 
+*/
+
 const deleteAnItem = require('./src/js/deleteTodo.js');
 const addTodo = require('./src/js/addTodo.js');
-let localStorage = [];
 describe('todo functions ADD & DELETE', () => {
   test('add a todo', () => {
     const todo = {
@@ -9,14 +12,15 @@ describe('todo functions ADD & DELETE', () => {
       index: 0,
     };
     const todos = [];
-    const result = addTodo(todo, todos);
-  
-    localStorage.push(todo);
-    expect(localStorage).toEqual(result);
-    expect(result.length).toBe(1);
+    document.body.innerHTML =
+    '<div>' +
+    '  <ul id="list"><li></li></ul>' +
+    '</div>';
+    addTodo(todo, todos);
+    const list = document.querySelectorAll('#list li');
+    expect(list).toHaveLength(1);
+  })
 
-    console.log(document.querySelector('body'));
-  });
   test('delete an item', () => {
     const todos = [
       {
@@ -30,19 +34,14 @@ describe('todo functions ADD & DELETE', () => {
         index: 1,
       },
     ];
-    localStorage = todos;
     const i = 0;
-    const result = deleteAnItem(i, todos); 
-    expect(result).toEqual([
-      {
-        desc: 'second',
-        completed: false,
-        index: 1,
-      },
-    ]);
-    localStorage.splice(i, 1);
-    expect(localStorage).toBe(result);
-  });
+    const result = deleteAnItem(i, todos);
+    document.body.innerHTML =
+    '<div>' +
+    '  <ul id="list"><li></li></ul>' +
+    '</div>';
+    deleteAnItem(i, todos);
+    const list = document.querySelectorAll('#list li');
+    expect(list).toHaveLength(1);
 });
-
-
+});
