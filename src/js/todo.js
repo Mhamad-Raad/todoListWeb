@@ -73,15 +73,15 @@ const render = () => {
 };
 addInput.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') {
-    if (addInput.value === '') {
-      return;
-    } else {
+    if (addInput.value !== '') {
       const todoVal = addInput.value;
       addInput.value = '';
       index += 1;
       const updTodo = addAnItem({ index: index, desc: todoVal, completed: false }, todos);
       localStorage.setItem('todos', JSON.stringify(updTodo));
       render();
+    } else {
+      return;
     }
   }
 });
