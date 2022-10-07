@@ -2,9 +2,9 @@
 * @jest-environment jsdom
 */
 
-import updateTodo from './src/js/updateTodo';
-import clearAllCompleted from './src/js/clearAllCompleted';
-import checkTodo from './src/js/checkTodo';
+import updateTodo from './src/js/updateTodo.js';
+import clearAllCompleted from './src/js/clearAllCompleted.js';
+import checkTodo from './src/js/checkTodo.js';
 
 describe('todo functions UPDATE, CLEAR & CHECK', () => {
   test('update a todo', () => {

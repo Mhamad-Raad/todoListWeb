@@ -30,8 +30,7 @@ const render = () => {
     //  update checked status
     const todoRow = todoDiv.querySelectorAll('.todos')[i];
     todoRow.querySelector('.todo-check').addEventListener('click', () => {
-
-      let result = checkTodo(i, todos);
+      const result = checkTodo(i, todos);
       localStorage.setItem('todos', JSON.stringify(result));
       render();
     });
@@ -67,7 +66,7 @@ const render = () => {
     });
     //  update description
     todoRow.querySelector('.todo-desc').addEventListener('change', (e) => {
-      const result = updTodo(i, todos, e.target.value); 
+      const result = updTodo(i, todos, e.target.value);
       localStorage.setItem('todos', JSON.stringify(result));
     });
   }
@@ -75,7 +74,7 @@ const render = () => {
 addInput.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') {
     if (addInput.value === '') {
-      alert('You must write something!');
+      return;
     } else {
       const todoVal = addInput.value;
       addInput.value = '';
