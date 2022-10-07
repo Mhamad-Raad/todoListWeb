@@ -80,8 +80,6 @@ addInput.addEventListener('keypress', (e) => {
       const updTodo = addAnItem({ index: index, desc: todoVal, completed: false }, todos);
       localStorage.setItem('todos', JSON.stringify(updTodo));
       render();
-    } else {
-      return;
     }
   }
 });
