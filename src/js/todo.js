@@ -2,6 +2,7 @@
 import deleteAnItem from './deleteTodo.js';
 import addAnItem from './addTodo.js';
 import updTodo from './updateTodo.js';
+import checkTodo from './checkTodo.js';
 
 const addInput = document.querySelector('.todo-input');
 let todos = localStorage.getItem('todos') !== null ? JSON.parse(localStorage.getItem('todos')) : [];
@@ -28,8 +29,9 @@ const render = () => {
     //  update checked status
     const todoRow = todoDiv.querySelectorAll('.todos')[i];
     todoRow.querySelector('.todo-check').addEventListener('click', () => {
-      todos[i].completed = !todos[i].completed;
-      localStorage.setItem('todos', JSON.stringify(todos));
+
+      let result = checkTodo(i, todos);
+      localStorage.setItem('todos', JSON.stringify(result));
     });
 
     //  change color and icon on input focus
