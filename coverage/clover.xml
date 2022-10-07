@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1665096622735" clover="3.2.0">
-  <project timestamp="1665096622735" name="All files">
-    <metrics statements="9" coveredstatements="8" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2" elements="13" coveredelements="11" complexity="0" loc="9" ncloc="9" packages="1" files="2" classes="2"/>
+<coverage generated="1665174291830" clover="3.2.0">
+  <project timestamp="1665174291830" name="All files">
+    <metrics statements="15" coveredstatements="14" conditionals="2" coveredconditionals="1" methods="4" coveredmethods="4" elements="21" coveredelements="19" complexity="0" loc="15" ncloc="15" packages="1" files="4" classes="4"/>
     <file name="addTodo.js" path="C:\Users\Administrator\Desktop\Microverse\pair\todoListWeb\src\js\addTodo.js">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <line num="2" count="1" type="stmt"/>
+      <line num="3" count="1" type="stmt"/>
+      <line num="6" count="1" type="stmt"/>
+    </file>
+    <file name="checkTodo.js" path="C:\Users\Administrator\Desktop\Microverse\pair\todoListWeb\src\js\checkTodo.js">
       <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <line num="2" count="1" type="stmt"/>
       <line num="3" count="1" type="stmt"/>
@@ -16,6 +22,12 @@
       <line num="6" count="0" type="stmt"/>
       <line num="8" count="1" type="stmt"/>
       <line num="11" count="1" type="stmt"/>
+    </file>
+    <file name="updateTodo.js" path="C:\Users\Administrator\Desktop\Microverse\pair\todoListWeb\src\js\updateTodo.js">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <line num="2" count="1" type="stmt"/>
+      <line num="3" count="1" type="stmt"/>
+      <line num="6" count="1" type="stmt"/>
     </file>
   </project>
 </coverage>
