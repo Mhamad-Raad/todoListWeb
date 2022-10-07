@@ -6,8 +6,7 @@
  * or disable the default devtool with "devtool: false".
  * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
  */
-/******/ (() => { // webpackBootstrap
-/******/ 	var __webpack_modules__ = ({
+(self["webpackChunkwebpack"] = self["webpackChunkwebpack"] || []).push([["main"],{
 
 /***/ "./node_modules/css-loader/dist/cjs.js!./src/style.css":
 /*!*************************************************************!*\
@@ -129,6 +128,26 @@ eval("function addAnItem(info, todos) {\r\n  todos.push(info);\r\n  return todos
 
 /***/ }),
 
+/***/ "./src/js/checkTodo.js":
+/*!*****************************!*\
+  !*** ./src/js/checkTodo.js ***!
+  \*****************************/
+/***/ ((module) => {
+
+eval("function checkTodo(i, todos) {\r\n  todos[i].completed = !todos[i].completed;\r\n  return todos;\r\n}\r\n\r\nmodule.exports = checkTodo;\n\n//# sourceURL=webpack://webpack/./src/js/checkTodo.js?");
+
+/***/ }),
+
+/***/ "./src/js/clearAllCompleted.js":
+/*!*************************************!*\
+  !*** ./src/js/clearAllCompleted.js ***!
+  \*************************************/
+/***/ ((module) => {
+
+eval("function clearAllCompleted(todos) {\r\n  todos = todos.filter((todo) => todo.completed !== true);\r\n  return todos;\r\n}\r\n\r\nmodule.exports = clearAllCompleted;\n\n//# sourceURL=webpack://webpack/./src/js/clearAllCompleted.js?");
+
+/***/ }),
+
 /***/ "./src/js/deleteTodo.js":
 /*!******************************!*\
   !*** ./src/js/deleteTodo.js ***!
@@ -157,88 +176,23 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sty
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _deleteTodo_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./deleteTodo.js */ \"./src/js/deleteTodo.js\");\n/* harmony import */ var _deleteTodo_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_deleteTodo_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _addTodo_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./addTodo.js */ \"./src/js/addTodo.js\");\n/* harmony import */ var _addTodo_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_addTodo_js__WEBPACK_IMPORTED_MODULE_1__);\n/* eslint-dsibale no-loop-func, no-func-assign, no-class-assign */\r\n\r\n\r\n\r\nconst addInput = document.querySelector('.todo-input');\r\nlet todos = localStorage.getItem('todos') !== null ? JSON.parse(localStorage.getItem('todos')) : [];\r\nlet index = todos.length;\r\nconst todoDiv = document.querySelector('.todo-list');\r\nconst clearBtn = document.querySelector('.clear-button');\r\n\r\nconst render = () => {\r\n  if (todos !== null) {\r\n    todoDiv.innerHTML = '';\r\n    todos.forEach((todo) => {\r\n      const check = todo.completed === true ? 'checked' : '';\r\n      todoDiv.innerHTML += `\r\n        <div class=\"todos\">\r\n          <input type=\"checkbox\" class=\"todo-check\" value=\"${todo.completed}\" ${check}>\r\n          <input type=\"text\" class=\"todo-desc clear-border\" value=\"${todo.desc}\">\r\n          <i class=\"fa-solid fa-bars\"></i>\r\n          <button type=\"button\" class=\"trash-btn\">delete</buttom>\r\n        </div>\r\n      `;\r\n    });\r\n  }\r\n  for (let i = 0; i < todoDiv.querySelectorAll('.todos').length; i += 1) {\r\n    //  update checked status\r\n    const todoRow = todoDiv.querySelectorAll('.todos')[i];\r\n    todoRow.querySelector('.todo-check').addEventListener('click', () => {\r\n      todos[i].completed = !todos[i].completed;\r\n      localStorage.setItem('todos', JSON.stringify(todos));\r\n    });\r\n\r\n    //  change color and icon on input focus\r\n\r\n    todoRow.addEventListener('focusin', () => {\r\n      todoRow.classList.add('active');\r\n      todoRow.querySelector('.todo-desc').classList.add('active');\r\n      todoRow.querySelector('.trash-btn').style.display = 'block';\r\n      todoRow.querySelector('.fa-bars').style.display = 'none';\r\n    });\r\n\r\n    todoRow.querySelector('.trash-btn').addEventListener('click', () => {\r\n      const updTodo = _deleteTodo_js__WEBPACK_IMPORTED_MODULE_0___default()(i, todos);\r\n      for (let a = i; a < updTodo.length; a += 1) {\r\n        updTodo[a].index -= 1;\r\n      }\r\n      index -= 1;\r\n      localStorage.setItem('todos', JSON.stringify(updTodo));\r\n      render();\r\n    });\r\n\r\n    todoRow.addEventListener('focusout', (e) => {\r\n      const parent = todoRow;\r\n      const leavingParent = !parent.contains(e.relatedTarget);\r\n      if (leavingParent) {\r\n        todoRow.classList.remove('active');\r\n        todoRow.querySelector('.todo-desc').classList.remove('active');\r\n        todoRow.querySelector('.fa-bars').style.display = 'flex';\r\n        todoRow.querySelector('.trash-btn').style.display = 'none';\r\n      }\r\n    });\r\n    //  update description\r\n    todoRow.querySelector('.todo-desc').addEventListener('change', (e) => {\r\n      todos[i].desc = e.target.value;\r\n      localStorage.setItem('todos', JSON.stringify(todos));\r\n    });\r\n  }\r\n};\r\naddInput.addEventListener('keypress', (e) => {\r\n  if (e.key === 'Enter') {\r\n    if (addInput.value === '') {\r\n      alert('You must write something!');\r\n    } else {\r\n      const todoVal = addInput.value;\r\n      addInput.value = '';\r\n      index += 1;\r\n      const updTodo = _addTodo_js__WEBPACK_IMPORTED_MODULE_1___default()({ index: index, desc: todoVal, completed: false }, todos);\r\n      localStorage.setItem('todos', JSON.stringify(updTodo));\r\n      render();\r\n    }\r\n  }\r\n});\r\n\r\nclearBtn.addEventListener('click', () => {\r\n  todos = todos.filter((todo) => todo.completed !== true);\r\n  /* eslint-disable prefer-const */\r\n  let i = 0;\r\n  todos.forEach((todo) => {\r\n    todo.index = i + 1;\r\n  });\r\n  index = todos.length;\r\n  localStorage.setItem('todos', JSON.stringify(todos));\r\n  render();\r\n});\r\n\r\nwindow.onload = render();\n\n//# sourceURL=webpack://webpack/./src/js/todo.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _deleteTodo_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./deleteTodo.js */ \"./src/js/deleteTodo.js\");\n/* harmony import */ var _deleteTodo_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_deleteTodo_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _addTodo_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./addTodo.js */ \"./src/js/addTodo.js\");\n/* harmony import */ var _addTodo_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_addTodo_js__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _updateTodo_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./updateTodo.js */ \"./src/js/updateTodo.js\");\n/* harmony import */ var _updateTodo_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_updateTodo_js__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _checkTodo_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./checkTodo.js */ \"./src/js/checkTodo.js\");\n/* harmony import */ var _checkTodo_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_checkTodo_js__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var _clearAllCompleted_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./clearAllCompleted.js */ \"./src/js/clearAllCompleted.js\");\n/* harmony import */ var _clearAllCompleted_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_clearAllCompleted_js__WEBPACK_IMPORTED_MODULE_4__);\n/* eslint-dsibale no-loop-func, no-func-assign, no-class-assign */\r\n\r\n\r\n\r\n\r\n\r\n\r\nconst addInput = document.querySelector('.todo-input');\r\nlet todos = localStorage.getItem('todos') !== null ? JSON.parse(localStorage.getItem('todos')) : [];\r\nlet index = todos.length;\r\nconst todoDiv = document.querySelector('.todo-list');\r\nconst clearBtn = document.querySelector('.clear-button');\r\n\r\nconst render = () => {\r\n  if (todos !== null) {\r\n    todoDiv.innerHTML = '';\r\n    todos.forEach((todo) => {\r\n      const check = todo.completed === true ? 'checked' : '';\r\n      todoDiv.innerHTML += `\r\n        <div class=\"todos\">\r\n          <input type=\"checkbox\" class=\"todo-check\" value=\"${todo.completed}\" ${check}>\r\n          <input type=\"text\" class=\"todo-desc clear-border\" value=\"${todo.desc}\">\r\n          <i class=\"fa-solid fa-bars\"></i>\r\n          <button type=\"button\" class=\"trash-btn\">delete</buttom>\r\n        </div>\r\n      `;\r\n    });\r\n  }\r\n  for (let i = 0; i < todoDiv.querySelectorAll('.todos').length; i += 1) {\r\n    //  update checked status\r\n    const todoRow = todoDiv.querySelectorAll('.todos')[i];\r\n    todoRow.querySelector('.todo-check').addEventListener('click', () => {\r\n\r\n      let result = _checkTodo_js__WEBPACK_IMPORTED_MODULE_3___default()(i, todos);\r\n      localStorage.setItem('todos', JSON.stringify(result));\r\n    });\r\n\r\n    //  change color and icon on input focus\r\n\r\n    todoRow.addEventListener('focusin', () => {\r\n      todoRow.classList.add('active');\r\n      todoRow.querySelector('.todo-desc').classList.add('active');\r\n      todoRow.querySelector('.trash-btn').style.display = 'block';\r\n      todoRow.querySelector('.fa-bars').style.display = 'none';\r\n    });\r\n\r\n    todoRow.querySelector('.trash-btn').addEventListener('click', () => {\r\n      const updTodo = _deleteTodo_js__WEBPACK_IMPORTED_MODULE_0___default()(i, todos);\r\n      for (let a = i; a < updTodo.length; a += 1) {\r\n        updTodo[a].index -= 1;\r\n      }\r\n      index -= 1;\r\n      localStorage.setItem('todos', JSON.stringify(updTodo));\r\n      render();\r\n    });\r\n\r\n    todoRow.addEventListener('focusout', (e) => {\r\n      const parent = todoRow;\r\n      const leavingParent = !parent.contains(e.relatedTarget);\r\n      if (leavingParent) {\r\n        todoRow.classList.remove('active');\r\n        todoRow.querySelector('.todo-desc').classList.remove('active');\r\n        todoRow.querySelector('.fa-bars').style.display = 'flex';\r\n        todoRow.querySelector('.trash-btn').style.display = 'none';\r\n      }\r\n    });\r\n    //  update description\r\n    todoRow.querySelector('.todo-desc').addEventListener('change', (e) => {\r\n      const result = _updateTodo_js__WEBPACK_IMPORTED_MODULE_2___default()(i, todos, e.target.value); \r\n      localStorage.setItem('todos', JSON.stringify(result));\r\n    });\r\n  }\r\n};\r\naddInput.addEventListener('keypress', (e) => {\r\n  if (e.key === 'Enter') {\r\n    if (addInput.value === '') {\r\n      alert('You must write something!');\r\n    } else {\r\n      const todoVal = addInput.value;\r\n      addInput.value = '';\r\n      index += 1;\r\n      const updTodo = _addTodo_js__WEBPACK_IMPORTED_MODULE_1___default()({ index: index, desc: todoVal, completed: false }, todos);\r\n      localStorage.setItem('todos', JSON.stringify(updTodo));\r\n      render();\r\n    }\r\n  }\r\n});\r\n\r\nclearBtn.addEventListener('click', () => {\r\n  /* eslint-disable prefer-const */\r\n  let updtodos = _clearAllCompleted_js__WEBPACK_IMPORTED_MODULE_4___default()(todos);\r\n  let i = 0;\r\n  updtodos.forEach((updtodo) => {\r\n    updtodo.index = i + 1;\r\n  });\r\n  index = updtodos.length;\r\n  localStorage.setItem('todos', JSON.stringify(updtodos));\r\n  render();\r\n});\r\n\r\nwindow.onload = render();\n\n//# sourceURL=webpack://webpack/./src/js/todo.js?");
+
+/***/ }),
+
+/***/ "./src/js/updateTodo.js":
+/*!******************************!*\
+  !*** ./src/js/updateTodo.js ***!
+  \******************************/
+/***/ ((module) => {
+
+eval("function updateTodo(i, todos, newDesc) {\r\n  todos[i].desc = newDesc;\r\n  return todos;\r\n}\r\n\r\nmodule.exports = updateTodo;\n\n//# sourceURL=webpack://webpack/./src/js/updateTodo.js?");
 
 /***/ })
 
-/******/ 	});
-/************************************************************************/
-/******/ 	// The module cache
-/******/ 	var __webpack_module_cache__ = {};
-/******/ 	
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
-/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
-/******/ 		if (cachedModule !== undefined) {
-/******/ 			return cachedModule.exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			id: moduleId,
-/******/ 			// no module.loaded needed
-/******/ 			exports: {}
-/******/ 		};
-/******/ 	
-/******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/ 	
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/ 	
-/************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
-/******/ 			__webpack_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = (exports, definition) => {
-/******/ 			for(var key in definition) {
-/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
-/******/ 				}
-/******/ 			}
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
-/******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/nonce */
-/******/ 	(() => {
-/******/ 		__webpack_require__.nc = undefined;
-/******/ 	})();
-/******/ 	
-/************************************************************************/
-/******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = __webpack_require__("./src/js/index.js");
-/******/ 	
-/******/ })()
-;
+},
+/******/ __webpack_require__ => { // webpackRuntimeModules
+/******/ var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
+/******/ var __webpack_exports__ = (__webpack_exec__("./src/js/index.js"));
+/******/ }
+]);

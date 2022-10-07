@@ -1,6 +1,9 @@
 /* eslint-dsibale no-loop-func, no-func-assign, no-class-assign */
 import deleteAnItem from './deleteTodo.js';
 import addAnItem from './addTodo.js';
+import updTodo from './updateTodo.js';
+import checkTodo from './checkTodo.js';
+import clearAllCompleted from './clearAllCompleted.js';
 
 const addInput = document.querySelector('.todo-input');
 let todos = localStorage.getItem('todos') !== null ? JSON.parse(localStorage.getItem('todos')) : [];
@@ -27,8 +30,9 @@ const render = () => {
     //  update checked status
     const todoRow = todoDiv.querySelectorAll('.todos')[i];
     todoRow.querySelector('.todo-check').addEventListener('click', () => {
-      todos[i].completed = !todos[i].completed;
-      localStorage.setItem('todos', JSON.stringify(todos));
+      const result = checkTodo(i, todos);
+      localStorage.setItem('todos', JSON.stringify(result));
+      render();
     });
 
     //  change color and icon on input focus
@@ -62,16 +66,14 @@ const render = () => {
     });
     //  update description
     todoRow.querySelector('.todo-desc').addEventListener('change', (e) => {
-      todos[i].desc = e.target.value;
-      localStorage.setItem('todos', JSON.stringify(todos));
+      const result = updTodo(i, todos, e.target.value);
+      localStorage.setItem('todos', JSON.stringify(result));
     });
   }
 };
 addInput.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') {
-    if (addInput.value === '') {
-      alert('You must write something!');
-    } else {
+    if (addInput.value !== '') {
       const todoVal = addInput.value;
       addInput.value = '';
       index += 1;
@@ -83,12 +85,8 @@ addInput.addEventListener('keypress', (e) => {
 });
 
 clearBtn.addEventListener('click', () => {
-  todos = todos.filter((todo) => todo.completed !== true);
   /* eslint-disable prefer-const */
-  let i = 0;
-  todos.forEach((todo) => {
-    todo.index = i + 1;
-  });
+  todos = clearAllCompleted(todos);
   index = todos.length;
   localStorage.setItem('todos', JSON.stringify(todos));
   render();
