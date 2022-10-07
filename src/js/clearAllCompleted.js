@@ -1,6 +1,6 @@
-function clearAllCompleted() {
-  const completedItems = document.querySelectorAll('.completed');
-  completedItems.forEach((item) => {
-    item.remove();
-  });
+function clearAllCompleted(todos) {
+  todos = todos.filter((todo) => todo.completed !== true);
+  return todos;
 }
+
+module.exports = clearAllCompleted;

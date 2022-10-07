@@ -3,6 +3,7 @@ import deleteAnItem from './deleteTodo.js';
 import addAnItem from './addTodo.js';
 import updTodo from './updateTodo.js';
 import checkTodo from './checkTodo.js';
+import clearAllCompleted from './clearAllCompleted.js';
 
 const addInput = document.querySelector('.todo-input');
 let todos = localStorage.getItem('todos') !== null ? JSON.parse(localStorage.getItem('todos')) : [];
@@ -86,14 +87,14 @@ addInput.addEventListener('keypress', (e) => {
 });
 
 clearBtn.addEventListener('click', () => {
-  todos = todos.filter((todo) => todo.completed !== true);
   /* eslint-disable prefer-const */
+  let result = clearAllCompleted(todos);
   let i = 0;
-  todos.forEach((todo) => {
+  result.forEach((todo) => {
     todo.index = i + 1;
   });
-  index = todos.length;
-  localStorage.setItem('todos', JSON.stringify(todos));
+  index = result.length;
+  localStorage.setItem('todos', JSON.stringify(result));
   render();
 });
 
