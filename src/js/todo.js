@@ -33,6 +33,7 @@ const render = () => {
 
       let result = checkTodo(i, todos);
       localStorage.setItem('todos', JSON.stringify(result));
+      render();
     });
 
     //  change color and icon on input focus
@@ -88,13 +89,9 @@ addInput.addEventListener('keypress', (e) => {
 
 clearBtn.addEventListener('click', () => {
   /* eslint-disable prefer-const */
-  let result = clearAllCompleted(todos);
-  let i = 0;
-  result.forEach((todo) => {
-    todo.index = i + 1;
-  });
-  index = result.length;
-  localStorage.setItem('todos', JSON.stringify(result));
+  todos = clearAllCompleted(todos);
+  index = todos.length;
+  localStorage.setItem('todos', JSON.stringify(todos));
   render();
 });
 
