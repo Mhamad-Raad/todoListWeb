@@ -1,6 +1,7 @@
 /* eslint-dsibale no-loop-func, no-func-assign, no-class-assign */
 import deleteAnItem from './deleteTodo.js';
 import addAnItem from './addTodo.js';
+import updTodo from './updateTodo.js';
 
 const addInput = document.querySelector('.todo-input');
 let todos = localStorage.getItem('todos') !== null ? JSON.parse(localStorage.getItem('todos')) : [];
@@ -62,8 +63,8 @@ const render = () => {
     });
     //  update description
     todoRow.querySelector('.todo-desc').addEventListener('change', (e) => {
-      todos[i].desc = e.target.value;
-      localStorage.setItem('todos', JSON.stringify(todos));
+      const result = updTodo(i, todos, e.target.value); 
+      localStorage.setItem('todos', JSON.stringify(result));
     });
   }
 };
