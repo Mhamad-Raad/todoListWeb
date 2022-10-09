@@ -21,7 +21,7 @@ const render = () => {
           <input type="checkbox" class="todo-check" value="${todo.completed}" ${check}>
           <input type="text" class="todo-desc clear-border" value="${todo.desc}">
           <i class="fa-solid fa-bars"></i>
-          <button type="button" class="trash-btn">delete</buttom>
+          <button type="button" class="trash-btn"><i class="fa fa-trash"></i></button>
         </div>
       `;
     });
