@@ -13,7 +13,7 @@ body {
   flex-direction: column;
   align-items: center;
   border: 1px solid rgb(90, 69, 184);
-  padding: 0 !important;
+  padding: 0;
   box-shadow: 10px 5px 10px rgb(128, 92, 131);
   border-radius: 10px;
   border-bottom-left-radius: 0;
@@ -57,10 +57,14 @@ body {
 }
 
 .todo-desc {
-  margin: 0 !important;
+  margin: 0;
   height: 100%;
   width: 82%;
   border: 1px solid rgb(193, 193, 193);
+}
+
+.checked {
+  text-decoration: line-through;
 }
 
 .fa-bars {
@@ -83,16 +87,12 @@ body {
   font-size: 16px;
   cursor: pointer;
   box-sizing: content-box;
-  margin: 0 !important;
-  padding: 0 !important;
+  margin: 0;
+  padding: 0;
   bottom: 0;
-  border-spacing: 0;
 }
 
 .clear-button:hover {
-  border-radius: 5px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
   background-color: rgb(112, 18, 244);
   color: #fff;
 }

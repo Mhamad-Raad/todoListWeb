@@ -18,8 +18,8 @@ const render = () => {
       const check = todo.completed === true ? 'checked' : '';
       todoDiv.innerHTML += `
         <div class="todos">
-          <input type="checkbox" class="todo-check" value="${todo.completed}" ${check}>
-          <input type="text" class="todo-desc clear-border" value="${todo.desc}">
+          <input type="checkbox" class="todo-check " value="${todo.completed}" ${check}>
+          <input type="text" class="todo-desc clear-border ${check}" value="${todo.desc}">
           <i class="fa-solid fa-bars"></i>
           <button type="button" class="trash-btn"><i class="fa fa-trash"></i></button>
         </div>
