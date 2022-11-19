@@ -11,7 +11,7 @@ in this web app you can add/remove.delete/update tasks that you can do by yourse
 - web packages
 
 # Live Demo
-[click here](https://mhamad-raad.github.io/todoListWeb/)
+[Demo](https://mhamad-raad.github.io/todoListWeb/)
 
 ## Getting Started
 To get a local copy up and running follow these simple example steps.
